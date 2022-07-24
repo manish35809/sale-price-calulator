@@ -96,9 +96,6 @@ const App = () => {
               onChange={(e) => setMargin(e.target.value)}
             />
           </div>
-          <div className="font-mono text-xl text-white font-bold w-[75%] mx-auto pb-2">
-            Average Cost: {avgCost.toFixed(2)}
-          </div>
           <div className="font-mono text-xl text-white font-bold w-[75%] mx-auto">
             Sale Price: {((avgCost / (100 - margin)) * 100).toFixed(2)}
           </div>
