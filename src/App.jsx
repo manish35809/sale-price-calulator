@@ -4,8 +4,59 @@ const App = () => {
   const [cost1, setCost1] = useState(0);
   const [cost2, setCost2] = useState(0);
   const [cost3, setCost3] = useState(0);
+  const [avgCost, setAvgCost] = useState(0);
 
   const [margin, setMargin] = useState(0);
+
+  useEffect(() => {
+    let avgCosting = 0;
+
+    if (
+      (parseInt(cost1) === 0 ||
+        parseInt(cost1) === "" ||
+        parseInt(cost1) < 0) &&
+      (parseInt(cost2) === 0 ||
+        parseInt(cost2) === "" ||
+        parseInt(cost2) < 0) &&
+      (parseInt(cost3) === 0 || parseInt(cost3) === "" || parseInt(cost3) < 0)
+    ) {
+      avgCosting = 0;
+    } else if (
+      (parseInt(cost1) !== 0 ||
+        parseInt(cost1) !== "" ||
+        parseInt(cost1) > 0) &&
+      (parseInt(cost2) === 0 ||
+        parseInt(cost2) === "" ||
+        parseInt(cost2) < 0) &&
+      (parseInt(cost3) === 0 || parseInt(cost3) === "" || parseInt(cost3) < 0)
+    ) {
+      avgCosting = parseInt(cost1);
+    } else if (
+      (parseInt(cost1) !== 0 ||
+        parseInt(cost1) !== "" ||
+        parseInt(cost1) > 0) &&
+      (parseInt(cost2) !== 0 ||
+        parseInt(cost2) !== "" ||
+        parseInt(cost2) > 0) &&
+      (parseInt(cost3) === 0 || parseInt(cost3) === "" || parseInt(cost3) < 0)
+    ) {
+      avgCosting = (parseInt(cost1) + parseInt(cost2)) / 2;
+    } else if (
+      (parseInt(cost1) !== 0 ||
+        parseInt(cost1) !== "" ||
+        parseInt(cost1) > 0) &&
+      (parseInt(cost2) !== 0 ||
+        parseInt(cost2) !== "" ||
+        parseInt(cost2) > 0) &&
+      (parseInt(cost3) !== 0 || parseInt(cost3) !== "" || parseInt(cost3) > 0)
+    ) {
+      avgCosting = (parseInt(cost1) + parseInt(cost2) + parseInt(cost3)) / 3;
+    }
+
+    if (avgCosting !== avgCost) {
+      setAvgCost(avgCosting);
+    }
+  }, [cost1, cost2, cost3]);
 
   return (
     <div className="p-4">
@@ -46,20 +97,10 @@ const App = () => {
             />
           </div>
           <div className="font-mono text-xl text-white font-bold w-[75%] mx-auto pb-2">
-            Average Cost{" "}
-            {(
-              (parseInt(cost1) + parseInt(cost2) + parseInt(cost3)) /
-              3
-            ).toFixed(2)}
+            Average Cost: {avgCost}
           </div>
           <div className="font-mono text-xl text-white font-bold w-[75%] mx-auto">
-            Sale Price{" "}
-            {(
-              ((parseInt(cost1) + parseInt(cost2) + parseInt(cost3)) /
-                3 /
-                (100 - margin)) *
-              100
-            ).toFixed(2)}
+            Sale Price: {((avgCost / (100 - margin)) * 100).toFixed(2)}
           </div>
         </form>
       </div>
