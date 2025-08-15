@@ -131,15 +131,15 @@ const App = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               {costs.map((cost, index) => (
                 <div key={index} className="space-y-2">
-                  <label className="text-sm font-medium text-gray-600">
+                  <label className="text-base font-bold text-blue-700">
                     Cost {index + 1} {index === 0 && <span className="text-red-500">*</span>}
                   </label>
                   <input
                     type="number"
                     value={cost}
                     onChange={(e) => handleCostChange(index, e.target.value)}
-                    placeholder={`Enter cost ${index + 1}`}
-                    className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${inputClasses}`}
+                    placeholder={`Enter cost ${index + 1} in ₹`}
+                    className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all font-semibold text-lg ${inputClasses}`}
                     min="0"
                     step="0.01"
                   />
@@ -149,7 +149,7 @@ const App = () => {
 
             {/* Margin Input */}
             <div className="mb-6">
-              <label className="text-sm font-medium text-gray-600 mb-2 flex items-center">
+              <label className="text-base font-bold text-purple-700 mb-2 flex items-center">
                 <Percent className="h-4 w-4 mr-1" />
                 Profit Margin (%) <span className="text-red-500 ml-1">*</span>
               </label>
@@ -158,7 +158,7 @@ const App = () => {
                 value={margin}
                 onChange={(e) => setMargin(e.target.value)}
                 placeholder="Enter profit margin percentage"
-                className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${inputClasses}`}
+                className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all font-semibold text-lg ${inputClasses}`}
                 min="0"
                 max="99"
                 step="0.1"
@@ -204,30 +204,30 @@ const App = () => {
               
               <div className="space-y-4">
                 <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
-                  <div className="text-sm text-gray-600 mb-1">Average Cost</div>
-                  <div className="text-2xl font-bold text-blue-600">
-                    ${avgCost.toFixed(2)}
+                  <div className="text-sm font-bold text-blue-700 mb-1">Average Cost</div>
+                  <div className="text-3xl font-extrabold text-blue-600 drop-shadow-sm">
+                    ₹{avgCost.toFixed(2)}
                   </div>
                 </div>
 
                 <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-green-900/50' : 'bg-green-50'}`}>
-                  <div className="text-sm text-gray-600 mb-1">Sale Price</div>
-                  <div className="text-2xl font-bold text-green-600">
-                    ${salePrice.toFixed(2)}
+                  <div className="text-sm font-bold text-green-700 mb-1">Sale Price</div>
+                  <div className="text-3xl font-extrabold text-green-600 drop-shadow-sm">
+                    ₹{salePrice.toFixed(2)}
                   </div>
                 </div>
 
                 <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-purple-900/50' : 'bg-purple-50'}`}>
-                  <div className="text-sm text-gray-600 mb-1">Profit Amount</div>
-                  <div className="text-2xl font-bold text-purple-600">
-                    ${profitAmount.toFixed(2)}
+                  <div className="text-sm font-bold text-purple-700 mb-1">Profit Amount</div>
+                  <div className="text-3xl font-extrabold text-purple-600 drop-shadow-sm">
+                    ₹{profitAmount.toFixed(2)}
                   </div>
                 </div>
 
                 {margin && (
                   <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-orange-900/50' : 'bg-orange-50'}`}>
-                    <div className="text-sm text-gray-600 mb-1">Profit Margin</div>
-                    <div className="text-2xl font-bold text-orange-600">
+                    <div className="text-sm font-bold text-orange-700 mb-1">Profit Margin</div>
+                    <div className="text-3xl font-extrabold text-orange-600 drop-shadow-sm">
                       {margin}%
                     </div>
                   </div>
@@ -255,10 +255,10 @@ const App = () => {
                       >
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="font-medium text-sm">
-                              ${item.salePrice.toFixed(2)}
+                            <div className="font-extrabold text-base text-green-600">
+                              ₹{item.salePrice.toFixed(2)}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-sm font-semibold text-orange-600">
                               Margin: {item.margin}%
                             </div>
                           </div>
